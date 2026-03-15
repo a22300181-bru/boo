@@ -95,11 +95,10 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 750px;
-    z-index: -1; /* Se queda detrás de la página principal */
-    visibility: visible; /* ¡IMPORTANTE! Debe ser visible para que html2canvas lo vea */
-    opacity: 0.01; /* Casi invisible al ojo humano, pero existente para el código */
-    pointer-events: none; /* Para que no interfiera con los clics */
+    z-index: -9999; /* Se va al fondo de todo */
+    opacity: 0; /* Totalmente transparente */
+    pointer-events: none; /* No se puede tocar */
+    display: block !important; /* Aseguramos que el navegador lo dibuje */
 }
 
 /* Página del PDF */

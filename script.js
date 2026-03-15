@@ -36,10 +36,12 @@ async function descargarPDF() {
     const textoOriginal = document.getElementById('carta-container').innerHTML;
     const clonDestino = document.getElementById('pdf-text-clone');
 
-    // 1. Copiamos el texto al molde del PDF
+    // 1. Inyectamos el texto
     clonDestino.innerHTML = textoOriginal;
 
-    // 2. Opciones optimizadas para evitar el PDF en blanco
+    // 2. Quitamos la transparencia un momento para que la librería lo vea al 100%
+    element.style.opacity = "1";
+
     const opt = {
         margin: 0,
         filename: 'Carta_Para_Mi_Lady.pdf',
@@ -48,17 +50,24 @@ async function descargarPDF() {
             scale: 2, 
             useCORS: true, 
             letterRendering: true,
+            // Importante: forzar que capture desde el inicio de la página
             scrollY: 0,
-            scrollX: 0,
-            windowWidth: 750 // Forzamos el ancho de renderizado
+            scrollX: 0
         },
         jsPDF: { unit: 'px', format: [750, 1050], orientation: 'portrait' }
     };
 
-    // 3. Ejecutar la descarga
     try {
+        // 3. Esperamos un suspiro para que el navegador procese el cambio de opacity
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // 4. Generamos y guardamos
         await html2pdf().set(opt).from(element).save();
     } catch (error) {
         console.error("Error al generar PDF:", error);
+        alert("Hubo un error al generar el PDF, intenta de nuevo.");
+    } finally {
+        // 5. Lo volvemos a hacer invisible
+        element.style.opacity = "0";
     }
 }
