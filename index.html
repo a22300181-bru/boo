@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div id="pdf-template" class="pdf-hidden">
+        <div class="pdf-page">
+            <div class="pdf-balloon b1"></div>
+            <div class="pdf-balloon b2"></div>
+            <div class="pdf-balloon b3"></div>
+            <div class="pdf-balloon b4"></div>
+            <div class="pdf-balloon b5"></div>
+            <div class="pdf-balloon b6"></div>
+            <div class="pdf-balloon b7"></div>
+            <div class="pdf-balloon b8"></div>
+            
+            <div class="pdf-content">
+                <h1 style="color: #d63384; text-align: center;">Feliz Cumpleaños</h1>
+                <div id="pdf-text-clone"></div> <p style="text-align: right; margin-top: 20px; font-weight: bold;">Con amor, Buno</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="balloon-container"></div>
+
+    <div class="main-content">
+        <h1>FELIZ CUMPLEAÑOS A MI BOO</h1>
+
+        <div id="carta-container" class="carta">
+            <p>Esta carta, es para ti en este día tan especial para los dos...</p>
+            <p>Antes que nada, felicitarte por este tu día, por tu cumpleaños no.19 🎉 Poco a poco estas creciendo más y más y me encanta que lo hagas a mi lado, muchas felicidades y espero este sea un día especial y hermoso para ti. No sabes lo mucho que te amo, te pienso y me hace feliz estar contigo, vale mucho la pena esforzarme por ti, ser mejor por ti, crecer como persona para ti y nuestro futuro.  </p>
+            <p>Diviertete, festeja con los que amas y que este nueva vuelta al sol sea una etapa que nunca olvides por todas las cosas buenas que vienen para ti, se que serás muy buena en lo que decidas ser, no tengas miedo ni dudes de lo que puedes hacer. Te amo mi lady, aunque seas una enojona cacetona, amo verte todos los días posibles y ver como iluminas a mis ojitos incluso más que el sol.</p>
+            <p>Te amo con toda mi alma terroncito, ATTE: Buno</p>
+        </div>
+
+        <div class="controls">
+            <button onclick="descargarPDF()" class="btn-download">↓</button>
+            <button class="btn-surprise">¡Sorpresa!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

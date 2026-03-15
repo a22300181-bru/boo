@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffe4e1;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 80%;
+}
+
+h1 {
+    color: #d63384;
+    letter-spacing: 5px;
+}
+
+.carta {
+    background: white;
+    border: 2px solid #ffb6c1;
+    padding: 40px;
+    width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: left;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+.btn-download, .btn-surprise {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s;
+}
+
+.btn-download:hover {
+    background: #d63384;
+    transform: scale(1.05);
+}
+
+/* Globos animados */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 100px;
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    z-index: 1;
+    animation: float 10s linear infinite;
+    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: rgba(0,0,0,0.2);
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+}
+
+/* ========================= */
+/* ESTILOS PARA EL PDF */
+/* ========================= */
+
+#pdf-template{
+    width:750px;
+}
+
+/* Oculta el molde del PDF */
+.pdf-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 750px;
+    z-index: -1; /* Se queda detrás de la página principal */
+    visibility: visible; /* ¡IMPORTANTE! Debe ser visible para que html2canvas lo vea */
+    opacity: 0.01; /* Casi invisible al ojo humano, pero existente para el código */
+    pointer-events: none; /* Para que no interfiera con los clics */
+}
+
+/* Página del PDF */
+.pdf-page {
+    width: 750px;
+    padding: 60px;
+    background: #fff0f5;
+    position: relative;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    min-height: 1050px;
+    box-sizing: border-box;
+}
+
+/* Contenido de la carta en PDF */
+.pdf-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border: 3px solid #ffb6c1;
+    border-radius: 15px;
+    min-height: 800px;
+}
+
+/* Globos del PDF */
+.pdf-balloon {
+    position: absolute;
+    width: 120px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    opacity: 0.8;
+    z-index: 1;
+    border: 3px solid white;
+}
+
+/* ========================= */
+/* POSICIONES DE GLOBOS */
+/* ========================= */
+
+.b1 { top: 20px; left: 20px; background-image: url('img/1.jpg'); transform: rotate(-10deg); width: 110px; height: 130px; }
+
+.b2 { top: 80px; right: 30px; background-image: url('img/2.jpg'); transform: rotate(15deg); width: 100px; height: 120px; }
+
+.b3 { top: -20px; left: 45%; background-image: url('img/3.jpg'); transform: rotate(5deg); width: 90px; height: 110px; opacity: 0.5; }
+
+.b4 { top: 400px; left: -10px; background-image: url('img/4.jpg'); transform: rotate(-20deg); width: 120px; height: 145px; }
+
+.b5 { top: 450px; right: -15px; background-image: url('img/5.jpg'); transform: rotate(10deg); width: 115px; height: 140px; }
+
+.b6 { bottom: 30px; left: 40px; background-image: url('img/6.jpg'); transform: rotate(-15deg); width: 130px; height: 155px; }
+
+.b7 { bottom: 50px; right: 40px; background-image: url('img/7.jpg'); transform: rotate(12deg); width: 110px; height: 130px; }
+
+.b8 { bottom: -10px; left: 45%; background-image: url('img/8.jpg'); transform: rotate(-5deg); width: 100px; height: 125px; }
