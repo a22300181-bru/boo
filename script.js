@@ -30,33 +30,28 @@ function createBalloon() {
 // Esto hace que se cree un globo cada 800 milisegundos
 setInterval(createBalloon, 800);
 function descargarPDF() {
-    // Clonar texto
-    const textoOriginal = document.getElementById('carta-container').innerHTML;
-    document.getElementById('pdf-text-clone').innerHTML = textoOriginal;
+    // 1. Buscamos el contenido original y el contenedor del PDF
+    const cartaOriginal = document.getElementById('carta-container');
+    const contenedorPDF = document.getElementById('pdf-template');
+    const clonTexto = document.getElementById('pdf-text-clone');
 
-    const element = document.getElementById('pdf-template');
-    element.style.display = 'block'; // Mostrar para la captura
+    // 2. Copiamos el contenido HTML de la carta original al div del PDF
+    clonTexto.innerHTML = cartaOriginal.innerHTML;
+
+    // 3. Mostramos el PDF temporalmente para capturarlo
+    contenedorPDF.style.display = 'block';
 
     const opt = {
         margin: 0,
-        filename: 'Carta_Boo.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { 
-            scale: 2, 
-            useCORS: true,
-            width: 750, // Ancho fijo del papel
-            windowWidth: 750, // Ignora el ancho del navegador
-            x: 0,
-            y: 0
-        },
-        jsPDF: { 
-            unit: 'px', 
-            format: [750, 1050], 
-            orientation: 'portrait',
-            hotfixes: ['px_scaling'] 
-        }
+        filename: 'Carta_Cumpleaños_Bruno.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'px', format: [750, 1050], orientation: 'portrait' }
     };
-    html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none'; // Ocultar de nuevo
+
+    // 4. Generamos el PDF y luego ocultamos el contenedor de nuevo
+    html2pdf().set(opt).from(contenedorPDF).save().then(() => {
+        contenedorPDF.style.display = 'none';
+        clonTexto.innerHTML = ''; // Limpiamos para que no ocupe memoria
     });
 }

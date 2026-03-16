@@ -85,40 +85,43 @@ h1 {
 /* Busca la sección del PDF y reemplázala con esto */
 /* Ocultamos el molde de forma segura */
 /* Contenedor principal del molde PDF */
+/* --- NUEVA CONFIGURACIÓN RESPONSIVA PARA EL PDF --- */
+
+/* Ocultamos el molde fuera de la vista para que no rompa el diseño responsivo */
+/* Cambia esto en tu CSS */
 #pdf-template {
-    display: none; 
+    display: none; /* Mantener oculto por defecto */
     width: 750px;
+    height: 1050px;
+    margin: 0 auto;
 }
 
 .pdf-page {
     width: 750px;
     height: 1050px;
-    background-color: #fff0f5; /* Fondo rosa de tu dibujo */
+    background-color: #fff0f5;
     position: relative;
     padding: 0;
     margin: 0;
-    overflow: hidden;
-    display: block !important; /* Forzamos visualización */
 }
 
 .pdf-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrado matemático perfecto */
-    width: 80%; /* Ocupa la mayor parte del ancho */
-    height: 85%; /* Ocupa la mayor parte del alto */
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 85%;
     background: rgba(255, 255, 255, 0.95);
     border: 3px solid #ffb6c1;
     border-radius: 20px;
     padding: 50px;
-    z-index: 5;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 
-/* Estilos de los globos en las orillas (como tu dibujo) */
+/* Estilos de los globos en el PDF */
 .pdf-balloon {
     position: absolute;
     width: 110px;
@@ -126,23 +129,27 @@ h1 {
     background-size: cover;
     background-position: center;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    z-index: 10;
     border: 3px solid white;
 }
 
-/* Posiciones exactas para llenar los huecos de tu dibujo */
+/* Posiciones de los globos del PDF */
 .img1 { top: 30%; left: 15px; } 
 .img2 { top: 15%; right: 15px; } 
 .img3 { top: 50%; right: 15px; } 
 .img4 { bottom: 10%; left: 30px; }
 .img5 { bottom: 5%; right: 30px; }
 
+/* --- AJUSTES FINALES RESPONSIVOS --- */
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.5rem; /* Reduce el tamaño en pantallas pequeñas */
+        font-size: 1.5rem;
         letter-spacing: 2px;
     }
     .main-content {
-        padding: 15px; /* Menos espacio interno para aprovechar el ancho */
+        width: 90%; /* Asegura que el contenedor no se salga */
+        padding: 15px;
+    }
+    .carta {
+        padding: 15px;
     }
 }
