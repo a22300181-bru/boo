@@ -29,45 +29,34 @@ function createBalloon() {
 // --- INICIO DE LA ANIMACIÓN ---
 // Esto hace que se cree un globo cada 800 milisegundos
 setInterval(createBalloon, 800);
-
-// --- FUNCIÓN PARA EL PDF ---
-async function descargarPDF() {
-    const element = document.getElementById('pdf-template');
+function descargarPDF() {
+    // Clonar texto
     const textoOriginal = document.getElementById('carta-container').innerHTML;
-    const clonDestino = document.getElementById('pdf-text-clone');
+    document.getElementById('pdf-text-clone').innerHTML = textoOriginal;
 
-    // 1. Inyectamos el texto
-    clonDestino.innerHTML = textoOriginal;
-
-    // 2. Quitamos la transparencia un momento para que la librería lo vea al 100%
-    element.style.opacity = "1";
+    const element = document.getElementById('pdf-template');
+    element.style.display = 'block'; // Mostrar para la captura
 
     const opt = {
         margin: 0,
-        filename: 'Carta_Para_Mi_Lady.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
+        filename: 'Carta_Boo.pdf',
+        image: { type: 'jpeg', quality: 1 },
         html2canvas: { 
             scale: 2, 
-            useCORS: true, 
-            letterRendering: true,
-            // Importante: forzar que capture desde el inicio de la página
-            scrollY: 0,
-            scrollX: 0
+            useCORS: true,
+            width: 750, // Ancho fijo del papel
+            windowWidth: 750, // Ignora el ancho del navegador
+            x: 0,
+            y: 0
         },
-        jsPDF: { unit: 'px', format: [750, 1050], orientation: 'portrait' }
+        jsPDF: { 
+            unit: 'px', 
+            format: [750, 1050], 
+            orientation: 'portrait',
+            hotfixes: ['px_scaling'] 
+        }
     };
-
-    try {
-        // 3. Esperamos un suspiro para que el navegador procese el cambio de opacity
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // 4. Generamos y guardamos
-        await html2pdf().set(opt).from(element).save();
-    } catch (error) {
-        console.error("Error al generar PDF:", error);
-        alert("Hubo un error al generar el PDF, intenta de nuevo.");
-    } finally {
-        // 5. Lo volvemos a hacer invisible
-        element.style.opacity = "0";
-    }
+    html2pdf().set(opt).from(element).save().then(() => {
+        element.style.display = 'none'; // Ocultar de nuevo
+    });
 }

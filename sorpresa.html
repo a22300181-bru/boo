@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial - Volta Racing</title>
+    <style>
+        /* ... (Mismos estilos de body, html, #heart-container, etc.) ... */
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            font-family: 'Times New Roman', Times, serif; color: #ffffff;
+            overflow-x: hidden; display: flex; justify-content: center; align-items: center;
+        }
+        #heart-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .invitation-card {
+            position: relative; z-index: 10; background: rgba(0, 0, 0, 0.85);
+            padding: 40px; border-radius: 15px; border: 2px solid;
+            border-image: linear-gradient(to bottom right, #007bff, #dc3545) 1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8); max-width: 500px; width: 85%;
+            text-align: center; backdrop-filter: blur(5px);
+        }
+        .pre-title { font-size: 1.2rem; color: #cccccc; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        h1 { color: #dc3545; font-size: 2.5rem; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; }
+        .volta { color: #007bff; font-weight: bold; }
+        .details-container { margin: 30px 0; text-align: left; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; }
+        .detail-item { font-size: 1.3rem; margin: 15px 0; display: flex; align-items: center; }
+        .label { color: #dc3545; font-weight: bold; width: 100px; display: inline-block; }
+        .value { color: #ffffff; flex: 1; }
+        .btn-maps {
+            display: inline-block; background: transparent; color: #007bff; border: 2px solid #007bff;
+            padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 1.1rem;
+            font-weight: bold; text-transform: uppercase; transition: all 0.3s ease; margin-top: 20px;
+        }
+        .btn-maps:hover { background: #007bff; color: #ffffff; box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); transform: translateY(-2px); }
+        @media (max-width: 600px) { .invitation-card { padding: 25px; width: 80%; } h1 { font-size: 1.8rem; } .pre-title { font-size: 1rem; } .detail-item { font-size: 1.1rem; } .label { width: 80px; } }
+
+        /* --- NUEVOS ESTILOS PARA CORAZONES CON IMAGEN --- */
+        .heart-svg {
+            position: absolute;
+            bottom: -150px; /* Empieza más abajo */
+            opacity: 0.8;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="heart-container"></div>
+
+    <div class="invitation-card">
+        <p class="pre-title">Ponte tu casco y prepara los motores para...</p>
+        <h1>CORRER EN...<br><span class="volta">VOLTA RACING</span></h1>
+        <div class="details-container">
+            <div class="detail-item"><span class="label">Lugar:</span><span class="value">Pista de Go Karts Volta</span></div>
+            <div class="detail-item"><span class="label">Fecha:</span><span class="value">Lunes, 16 de Marzo</span></div>
+            <div class="detail-item"><span class="label">Hora:</span><span class="value">5:00 PM</span></div>
+        </div>
+        <p style="font-style: italic; color: #aaa;">¡Prepárate para la adrenalina, va a ser un día increíble!</p>
+        <a href="https://maps.app.goo.gl/ezXeCfyWWZ2h4Czc6" target="_blank" class="btn-maps">Ver Ubicación</a>
+    </div>
+
+    <script>
+        // Definimos la ruta del corazón SVG una vez
+        const heartPath = "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z";
+
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+
+            // Selecciona imagen aleatoria
+            const imgNumber = Math.floor(Math.random() * 15) + 1;
+            const imgUrl = `img/${imgNumber}.jpg`;
+
+            // Parámetros aleatorios
+            const size = Math.random() * (200 - 120) + 120; // Corazones más grandes
+            const left = Math.random() * 100 + "vw";
+            const duration = Math.random() * (18 - 10) + 10; // Un poco más lentos
+
+            // Creamos el elemento SVG dinámicamente
+            const svgNS = "http://www.w3.org/2000/svg";
+            const heartSvg = document.createElementNS(svgNS, "svg");
+            heartSvg.setAttribute("class", "heart-svg");
+            heartSvg.setAttribute("viewBox", "0 0 24 24");
+            heartSvg.style.width = size + "px";
+            heartSvg.style.height = size + "px";
+            heartSvg.style.left = left;
+            heartSvg.style.animationDuration = duration + "s";
+            heartSvg.style.animationDelay = Math.random() * 5 + "s";
+
+            // Definimos la máscara para la imagen
+            const defs = document.createElementNS(svgNS, "defs");
+            const clipPath = document.createElementNS(svgNS, "clipPath");
+            clipPath.setAttribute("id", `clip-${imgNumber}`); // ID único
+            const path = document.createElementNS(svgNS, "path");
+            path.setAttribute("d", heartPath);
+            clipPath.appendChild(path);
+            defs.appendChild(clipPath);
+            heartSvg.appendChild(defs);
+
+            // Añadimos la imagen con la máscara aplicada
+            const image = document.createElementNS(svgNS, "image");
+            image.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", imgUrl);
+            image.setAttribute("width", "100%");
+            image.setAttribute("height", "100%");
+            image.setAttribute("preserveAspectRatio", "xMidYMid slice"); // Centra y recorta la imagen
+            image.setAttribute("clip-path", `url(#clip-${imgNumber})`); // Aplica la máscara
+            heartSvg.appendChild(image);
+
+            container.appendChild(heartSvg);
+
+            // Eliminar elemento al terminar animación
+            setTimeout(() => { heartSvg.remove(); }, (duration + 5) * 1000);
+        }
+
+        setInterval(createHeart, 1200); // Un poco más lento para no saturar con corazones más grandes
+        for(let i=0; i<3; i++) { createHeart(); } // Unos pocos al inicio
+    </script>
+</body>
+</html>

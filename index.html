@@ -9,23 +9,24 @@
 </head>
 <body>
 
-    <div id="pdf-template" class="pdf-hidden">
-        <div class="pdf-page">
-            <div class="pdf-balloon b1"></div>
-            <div class="pdf-balloon b2"></div>
-            <div class="pdf-balloon b3"></div>
-            <div class="pdf-balloon b4"></div>
-            <div class="pdf-balloon b5"></div>
-            <div class="pdf-balloon b6"></div>
-            <div class="pdf-balloon b7"></div>
-            <div class="pdf-balloon b8"></div>
-            
-            <div class="pdf-content">
-                <h1 style="color: #d63384; text-align: center;">Feliz Cumpleaños</h1>
-                <div id="pdf-text-clone"></div> <p style="text-align: right; margin-top: 20px; font-weight: bold;">Con amor, Buno</p>
-            </div>
+<div id="pdf-template">
+    <div class="pdf-page">
+        <div class="pdf-balloon img1" style="background-image: url('img/1.jpg');"></div>
+        <div class="pdf-balloon img2" style="background-image: url('img/2.jpg');"></div>
+        <div class="pdf-balloon img3" style="background-image: url('img/3.jpg');"></div>
+        <div class="pdf-balloon img4" style="background-image: url('img/4.jpg');"></div>
+        <div class="pdf-balloon img5" style="background-image: url('img/5.jpg');"></div>
+
+        <div class="pdf-content">
+            <h1 style="color: #d63384; text-align: center; font-size: 32px; margin-bottom: 20px;">FELIZ CUMPLEAÑOS</h1>
+            <div id="pdf-text-clone" style="font-size: 19px; line-height: 1.6; color: #333; text-align: justify; flex-grow: 1;">
+                </div>
+            <p style="text-align: right; font-weight: bold; font-size: 20px; color: #d63384; margin-top: 20px;">
+                ATTE: Bruno
+            </p>
         </div>
     </div>
+</div>
 
     <div id="balloon-container"></div>
 
@@ -36,12 +37,13 @@
             <p>Esta carta, es para ti en este día tan especial para los dos...</p>
             <p>Antes que nada, felicitarte por este tu día, por tu cumpleaños no.19 🎉 Poco a poco estas creciendo más y más y me encanta que lo hagas a mi lado, muchas felicidades y espero este sea un día especial y hermoso para ti. No sabes lo mucho que te amo, te pienso y me hace feliz estar contigo, vale mucho la pena esforzarme por ti, ser mejor por ti, crecer como persona para ti y nuestro futuro.  </p>
             <p>Diviertete, festeja con los que amas y que este nueva vuelta al sol sea una etapa que nunca olvides por todas las cosas buenas que vienen para ti, se que serás muy buena en lo que decidas ser, no tengas miedo ni dudes de lo que puedes hacer. Te amo mi lady, aunque seas una enojona cacetona, amo verte todos los días posibles y ver como iluminas a mis ojitos incluso más que el sol.</p>
-            <p>Te amo con toda mi alma terroncito, ATTE: Buno</p>
+            <p>Te amo con toda mi alma terroncito</p>
         </div>
 
         <div class="controls">
-            <button onclick="descargarPDF()" class="btn-download">↓</button>
-            <button class="btn-surprise">¡Sorpresa!</button>
+            <button onclick="descargarPDF()" class="btn-download">Descargar Carta</button>
+            
+            <button class="btn-surprise" onclick="window.location.href='sorpresa.html'">¡Sorpresa!</button>
         </div>
     </div>
 

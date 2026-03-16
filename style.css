@@ -29,12 +29,13 @@ h1 {
 .carta {
     background: white;
     border: 2px solid #ffb6c1;
-    padding: 40px;
-    width: 600px;
+    padding: 20px; /* Reduje el padding para móviles */
+    width: 90%;    /* Ocupa el 90% del ancho disponible */
+    max-width: 600px; /* Pero no crece más allá de 600px en escritorio */
     margin: 0 auto 20px auto;
     text-align: left;
     line-height: 1.6;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Fundamental para que el padding no desborde */
 }
 
 .btn-download, .btn-surprise {
@@ -81,78 +82,67 @@ h1 {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
 }
-
-/* ========================= */
-/* ESTILOS PARA EL PDF */
-/* ========================= */
-
-#pdf-template{
-    width:750px;
+/* Busca la sección del PDF y reemplázala con esto */
+/* Ocultamos el molde de forma segura */
+/* Contenedor principal del molde PDF */
+#pdf-template {
+    display: none; 
+    width: 750px;
 }
 
-/* Oculta el molde del PDF */
-.pdf-hidden {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -9999; /* Se va al fondo de todo */
-    opacity: 0; /* Totalmente transparente */
-    pointer-events: none; /* No se puede tocar */
-    display: block !important; /* Aseguramos que el navegador lo dibuje */
-}
-
-/* Página del PDF */
 .pdf-page {
     width: 750px;
-    padding: 60px;
-    background: #fff0f5;
+    height: 1050px;
+    background-color: #fff0f5; /* Fondo rosa de tu dibujo */
     position: relative;
-    margin: auto;
-    font-family: Arial, sans-serif;
-    min-height: 1050px;
-    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    display: block !important; /* Forzamos visualización */
 }
 
-/* Contenido de la carta en PDF */
 .pdf-content {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado matemático perfecto */
+    width: 80%; /* Ocupa la mayor parte del ancho */
+    height: 85%; /* Ocupa la mayor parte del alto */
+    background: rgba(255, 255, 255, 0.95);
     border: 3px solid #ffb6c1;
-    border-radius: 15px;
-    min-height: 800px;
+    border-radius: 20px;
+    padding: 50px;
+    z-index: 5;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Globos del PDF */
+/* Estilos de los globos en las orillas (como tu dibujo) */
 .pdf-balloon {
     position: absolute;
-    width: 120px;
-    height: 150px;
+    width: 110px;
+    height: 140px;
     background-size: cover;
     background-position: center;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    opacity: 0.8;
-    z-index: 1;
+    z-index: 10;
     border: 3px solid white;
 }
 
-/* ========================= */
-/* POSICIONES DE GLOBOS */
-/* ========================= */
+/* Posiciones exactas para llenar los huecos de tu dibujo */
+.img1 { top: 30%; left: 15px; } 
+.img2 { top: 15%; right: 15px; } 
+.img3 { top: 50%; right: 15px; } 
+.img4 { bottom: 10%; left: 30px; }
+.img5 { bottom: 5%; right: 30px; }
 
-.b1 { top: 20px; left: 20px; background-image: url('img/1.jpg'); transform: rotate(-10deg); width: 110px; height: 130px; }
-
-.b2 { top: 80px; right: 30px; background-image: url('img/2.jpg'); transform: rotate(15deg); width: 100px; height: 120px; }
-
-.b3 { top: -20px; left: 45%; background-image: url('img/3.jpg'); transform: rotate(5deg); width: 90px; height: 110px; opacity: 0.5; }
-
-.b4 { top: 400px; left: -10px; background-image: url('img/4.jpg'); transform: rotate(-20deg); width: 120px; height: 145px; }
-
-.b5 { top: 450px; right: -15px; background-image: url('img/5.jpg'); transform: rotate(10deg); width: 115px; height: 140px; }
-
-.b6 { bottom: 30px; left: 40px; background-image: url('img/6.jpg'); transform: rotate(-15deg); width: 130px; height: 155px; }
-
-.b7 { bottom: 50px; right: 40px; background-image: url('img/7.jpg'); transform: rotate(12deg); width: 110px; height: 130px; }
-
-.b8 { bottom: -10px; left: 45%; background-image: url('img/8.jpg'); transform: rotate(-5deg); width: 100px; height: 125px; }
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem; /* Reduce el tamaño en pantallas pequeñas */
+        letter-spacing: 2px;
+    }
+    .main-content {
+        padding: 15px; /* Menos espacio interno para aprovechar el ancho */
+    }
+}
