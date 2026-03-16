@@ -43,7 +43,7 @@ function descargarPDF() {
 
     const opt = {
         margin: 0,
-        filename: 'Carta_Cumpleaños_Bruno.pdf',
+        filename: 'Carta_Terroncito.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'px', format: [750, 1050], orientation: 'portrait' }
