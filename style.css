@@ -130,14 +130,15 @@ h1 {
     background-position: center;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
     border: 3px solid white;
+    z-index: 100; /* Asegura que estén arriba de todo en el PDF */
 }
 
 /* Posiciones de los globos del PDF */
 .img1 { top: 30%; left: 15px; } 
 .img2 { top: 15%; right: 15px; } 
-.img3 { top: 50%; right: 15px; } 
+.img3 { top: 45%; right: 15px; } 
 .img4 { bottom: 10%; left: 30px; }
-.img5 { bottom: 5%; right: 30px; }
+.img5 { bottom: 15%; right: 35px; }
 
 /* --- AJUSTES FINALES RESPONSIVOS --- */
 @media (max-width: 600px) {
